@@ -3,8 +3,8 @@ import sqlite3,time,random,os,requests,json
 from typing import List, Tuple, Any
 
 namedb = "db.db"
-SECRET_KEY = "6Lc1VvUqAAAAACryZkeqeZTlMZKX2PlVsJcviNX4"
-PUBLIC_KEY = "6Lc1VvUqAAAAAPsDTMWXYLqnfGYOQAUp0rhpRc-x"
+PUBLIC_KEY = "6Ld1a_UqAAAAAJ5gqa_yjdOUzCm3BbgIGIIbzsw2"
+SECRET_KEY = "6Ld1a_UqAAAAAKddrw7wRbDNaGsHW3ZP6ToeFc5D"
 
 class DatabaseManager:
     def __init__(self, db_name: str):
