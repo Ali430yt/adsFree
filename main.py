@@ -87,8 +87,8 @@ def GetAds(ads):
     return open(ads,encoding="utf-8").read()
 listcode = []
 
-
 @app.route("/bot1/coin")
+@app.route("/")
 def index():
     if request.args.get("id"):
         session["id"] = str(request.args.get("id"))
@@ -96,6 +96,7 @@ def index():
     session["token"] = tk
     return render_template("index.html",token=tk,h=GetAds("h.txt"),b=GetAds("b.txt"),e=GetAds("e.txt"),rc=PUBLIC_KEY)
 @app.route("/bot1/getKey")
+@app.route("/getKey")
 def getKey():
     captcha_response = request.args.get("g-recaptcha-response")
     verify_url = "https://www.google.com/recaptcha/api/siteverify"
@@ -111,6 +112,7 @@ def getKey():
     return redirect(url_for("index"))
 
 @app.route("/bot1/show",methods=["POST","GET"])
+@app.route("/show",methods=["POST","GET"])
 def show():
     if request.method == "POST":
         captcha_response = request.form.get("g-recaptcha-response")
