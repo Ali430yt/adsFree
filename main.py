@@ -151,7 +151,7 @@ def apiList():
 def apiListDelet(id):
     for i in listcode:
         if str(i['id']) == id:
-            listcode.remove(id)
+            listcode.remove(i)
     return jsonify(listcode)
 
 
