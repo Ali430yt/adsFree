@@ -66,24 +66,22 @@ app.secret_key = "0djs9-dsd9dds-0vdcds-wecsx-cscf"
 
 time_difference = 360
 
+tokens = {}
+
 def getTokenPage(page):
     tk = ''.join(random.choice("1234567890qwertyuiopasdfghjklzxcvbnm") for i in range(random.randint(100,200)))
     current_timestamp = int(time.time())
-    db = DatabaseManager(db_name="db.db")
-    db.delet_value("tokens",f"tp < {current_timestamp - time_difference};")
-    db.insert_data("tokens",((tk),str(page),int(time.time())))
-    db.close()
+    tokens.update({tk:{"token":tk,"page":int(page),"time":int(time.time())}})
     return tk
 
 def checkTokenPage(tk,pg):
-    db = DatabaseManager(db_name="db.db")
-    current_timestamp = int(time.time())
-    db.delet_value("tokens",f"tp < {current_timestamp - time_difference};")
-    iss = db.value_exists("tokens",f"token='{tk}' AND page={pg}")
-    if iss:
-        db.delet_value("tokens",f"token='{tk}';")
-    db.close()
-    return iss
+    if tk in tokens:
+        if int(tokens[tk]["page"]) == int(pg) and (int(tokens[tk]["time"]) + time_difference) > int(time.time()):
+            tokens.pop(tk)
+            return True
+        else:
+            tokens.pop(tk)
+            return False
 
 def GetAds(ads):
     return open(ads,encoding="utf-8").read()
@@ -97,7 +95,6 @@ def index():
     tk = getTokenPage(1)
     session["token"] = tk
     return render_template("index.html",token=tk,h=GetAds("h.txt"),b=GetAds("b.txt"),e=GetAds("e.txt"),rc=PUBLIC_KEY)
-
 @app.route("/bot1/getKey")
 def getKey():
     captcha_response = request.args.get("g-recaptcha-response")
