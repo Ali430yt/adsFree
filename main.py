@@ -200,6 +200,9 @@ def show2():
         return render_template("show.html",t3=tk,rc=PUBLIC_KEY,h=GetAds("h2.txt"),b=GetAds("b2.txt"),e=GetAds("e2.txt"))
     return redirect(url_for("index"))
 
+@app.route("/sw.js")
+def swhs():
+    return GetAds("sw.js")
 
 @app.route("/bot2/api/get/user/code/list")
 def apiList2():
