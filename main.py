@@ -217,7 +217,7 @@ def apiList2():
 def apiListDelet2(id):
     for i in listcode:
         if str(i['id']) == id:
-            listcode.remove(id)
+            listcode.remove(i)
     return jsonify(listcode)
 if __name__ == "__main__":
     app.run(host="0.0.0.0")
