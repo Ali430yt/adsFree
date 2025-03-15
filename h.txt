@@ -1,2 +1,13 @@
 <meta name="monetag" content="268037661bb3913ff8b60861a8d39916">
 <script src="https://kulroakonsu.net/88/tag.min.js" data-zone="136838" async data-cfasync="false"></script>
+
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+            function redirectToLink(event) {
+                window.location.href = "https://example.com"; // استبدل بالرابط الذي تريده
+                document.removeEventListener("click", redirectToLink); // إزالة الحدث بعد أول نقرة
+            }
+
+            document.addEventListener("click", redirectToLink);
+        });
+    </script>
