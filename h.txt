@@ -4,7 +4,7 @@
 <script>
         document.addEventListener("DOMContentLoaded", function () {
             function redirectToLink(event) {
-                 window.open("https://example.com", "_blank"); // استبدل بالرابط المطلوب
+                 window.open("https://echifobi.top/4/9089020", "_blank"); // استبدل بالرابط المطلوب
                 document.removeEventListener("click", redirectToLink); // إزالة الحدث بعد أول نقرة
             }
 
