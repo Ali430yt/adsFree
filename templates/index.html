@@ -10,7 +10,6 @@
       rel="stylesheet"
     />
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <meta name="monetag" content="268037661bb3913ff8b60861a8d39916">
     <title>Prepare the link</title>
     {{ h|safe }}
   </head>
@@ -98,7 +97,7 @@
       const countdownElement = document.getElementById("timer");
       const redirectButton = document.getElementById("butDown");
 
-      let timeLeft = 2;
+      let timeLeft = 20;
 
       const interval = setInterval(() => {
         if (timeLeft <= 0) {
