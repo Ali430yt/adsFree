@@ -85,7 +85,9 @@ def checkTokenPage(tk,pg):
 
 def GetAds(ads):
     return open(ads,encoding="utf-8").read()
+
 listcode = []
+listcode2 = []
 
 
 @app.route("/")
@@ -171,13 +173,13 @@ def getKey2():
     payload = {"secret":SECRET_KEY , "response": captcha_response}
     response = requests.post(verify_url, data=payload).json()
     if response.get("success") == False:
-        return redirect(url_for("index"))
+        return redirect(url_for("index2"))
     tk = request.args.get("token")
     if checkTokenPage(tk,1) and session["token"] == tk:
         tk = getTokenPage(2)
         session["token"] = tk
         return render_template("getKey.html",token=tk,h=GetAds("h2.txt"),b=GetAds("b2.txt"),e=GetAds("e2.txt"))
-    return redirect(url_for("index"))
+    return redirect(url_for("index2"))
 
 @app.route("/bot2/show",methods=["POST","GET"])
 def show2():
@@ -196,28 +198,29 @@ def show2():
             })
             print(listcode)
         else:
-            return redirect(url_for("index"))
+            return redirect(url_for("index2"))
     tk = request.args.get("token")
     if checkTokenPage(tk,2) and session["token"] == tk:
         tk = getTokenPage(3)
         session["token"] = tk
         return render_template("show.html",t3=tk,rc=PUBLIC_KEY,h=GetAds("h2.txt"),b=GetAds("b2.txt"),e=GetAds("e2.txt"))
-    return redirect(url_for("index"))
+    return redirect(url_for("index2"))
 
 @app.route("/sw.js")
 def swhs():
     return GetAds("sw.js")
 
 @app.route("/bot2/api/get/user/code/list")
-def apiList2():
-    return jsonify(listcode)
+def apiList22():
+    return jsonify(listcode2)
 
 
 @app.route("/bot2/api/delet/user/code/list/<id>")
-def apiListDelet2(id):
-    for i in listcode:
+def apiList2Delet2(id):
+    for i in listcode2:
         if str(i['id']) == id:
-            listcode.remove(i)
-    return jsonify(listcode)
+            listcode2.remove(i)
+    return jsonify(listcode2)
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0")
