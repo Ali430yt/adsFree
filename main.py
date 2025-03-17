@@ -187,9 +187,9 @@ def show2():
         captcha_response = request.form.get("g-recaptcha-response")
         verify_url = "https://www.google.com/recaptcha/api/siteverify"
         payload = {"secret":SECRET_KEY , "response": captcha_response}
-        response = requests.post(verify_url, data=payload).json()
+        #response = requests.post(verify_url, data=payload).json()
         t3 = request.form.get("tid")
-        if response.get("success") and checkTokenPage(t3,3) and session["token"] == t3:
+        if True and checkTokenPage(t3,3) and session["token"] == t3:
             id = "".join(random.choices('1234567890',k=50))
             listcode.append({
                 "id":id,
